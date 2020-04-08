@@ -1,0 +1,46 @@
+package KieRule;
+import com.example.drools.Calculator;
+
+//set rules here and inject them to the Controller
+
+rule "BankOne"
+when
+p: Calculator(bankName == "BankOne");
+then
+double amount = p.getAmountToBorrow();
+if (amount < 70000){
+    amount = 70000;
+    System.out.println("*Please be advised that the minimal sum to borrow in this bank is $70,000.");
+}
+p.setInterestRate(0.031);
+double totalInterest = ((amount * p.getInterestRate()) * p.getTermInMonths() / 12);
+double totalCost = (amount + totalInterest);
+double monthlyPayment = (totalCost / p.getTermInMonths());
+p.setTotalCost(totalCost);
+p.setTotalInterest(totalInterest);
+p.setMonthlyPayment(monthlyPayment);
+System.out.println("Monthly Payment: $" + monthlyPayment);
+System.out.println("Total Interest: $" + totalInterest);
+System.out.println("Total Cost: $" + totalCost);
+end
+
+rule "BankTwo"
+when
+p: Calculator(bankName == "BankTwo");
+then
+double amount = p.getAmountToBorrow();
+if (amount < 65000){
+    amount = 65000;
+    System.out.println("*Please be advised that the minimal sum to borrow in this bank is $70,000.");
+}
+p.setInterestRate(0.023);
+double totalInterest = ((amount * p.getInterestRate()) * p.getTermInMonths() / 12);
+double totalCost = (amount + totalInterest);
+double monthlyPayment = (totalCost / p.getTermInMonths());
+p.setTotalCost(totalCost);
+p.setTotalInterest(totalInterest);
+p.setMonthlyPayment(monthlyPayment);
+System.out.println("Monthly Payment: $" + monthlyPayment);
+System.out.println("Total Interest: $" + totalInterest);
+System.out.println("Total Cost: $" + totalCost);
+end
