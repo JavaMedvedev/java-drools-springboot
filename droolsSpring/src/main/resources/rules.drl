@@ -31,7 +31,7 @@ then
 double amount = p.getAmountToBorrow();
 if (amount < 65000){
     amount = 65000;
-    System.out.println("*Please be advised that the minimal sum to borrow in this bank is $70,000.");
+    System.out.println("*Please be advised that the minimal sum to borrow in this bank is $65,000.");
 }
 p.setInterestRate(0.023);
 double totalInterest = ((amount * p.getInterestRate()) * p.getTermInMonths() / 12);
